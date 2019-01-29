@@ -13,4 +13,6 @@ router.post('/findall',ServiceController.getAllServicesDetails)
 
 router.post('/deletebyid',ServiceController.delete)
 
+router.post('/addServiceToPatient',ServiceController.addServicestoPatient)
+
 module.exports = router;

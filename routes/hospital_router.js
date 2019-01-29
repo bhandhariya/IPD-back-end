@@ -9,6 +9,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/register',HospitalController.register)
 
-router.post('/login',HospitalController.login)
+router.post('/login',HospitalController.login);
+
+router.post('/getAlldetails',HospitalController.getName);
+
+
 
 module.exports = router;

@@ -11,5 +11,12 @@ router.post('/addPatient',PatientController.savePatient);
 
 router.post('/getAllPat',PatientController.getAllPatientsDetails)
 
+router.post('/getonePatientDetail',PatientController.getonePatdetils)
+
+router.post('/addService',PatientController.addService);
+
+router.post('/allServiceDetails',PatientController.getAllSevuceofPateient)
+
+router.post('/deleteserviceFromPatient',PatientController.deleteserviceFromPatient)
 
 module.exports = router;

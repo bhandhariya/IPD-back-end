@@ -9,7 +9,9 @@ var HospitalSchema=new mongoose.Schema({
     mode_of_addmission:{type:String},
     address:{type:Schema.Types.String},
     patient_id:[{type:String}],
-    service_id:[{type:String}]
+    service_id:[{type:String}],
+    city:{type:String},
+    pin:{type:Number}
     
 },{
     toObject:{virtuals:true},

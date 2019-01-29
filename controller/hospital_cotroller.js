@@ -51,3 +51,26 @@ Hospital.findOne({username:req.body.username},function(err,admin){
 
 
 }
+
+
+exports.getName=function(req,res,next){
+    var data=req.body;
+    Hospital.findById(data.id,function(err,result){
+        if(!err && result){
+            res.send(result)
+        }else{
+            res.send('error')
+        }
+    })
+}
+
+// exports.getAddress=function(req,res,next){
+//     var data=req.body;
+//     Hospital.findById(data.id,function(err,result){
+//         if(!err && result){
+//             res.send(result.address)
+//         }else{
+//             res.send('error')
+//         }
+//     })
+// }

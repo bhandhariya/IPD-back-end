@@ -1,28 +1,21 @@
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
-var ServiceSchema=new mongoose.Schema({
+var BillingSchema=new mongoose.Schema({
     name:{type:String,required:true,unique:true},
     charge:{type:Number,required:true,unique:true},
-    hospital_id:{type:String},
-    patient_id:[String]
+    hospital_id:{type:String}
+    
 },{
     toObject:{virtuals:true},
     toJSON:{virtuals:true}
 });
 
 
-ServiceSchema.virtual('hospitaldetails',{
+BillingSchema.virtual('hospitaldetails',{
     ref: 'Hospital',
     localField: 'hospital_id',
     foreignField: 'hospital_id',
     justOne: false
 })
 
-ServiceSchema.virtual('patientDetils',{
-    ref: 'Patient',
-    localField: 'patient_id',
-    foreignField: 'services',
-    justOne: false
-})
-
-module.exports=mongoose.model('Service',ServiceSchema);
+module.exports=mongoose.model('Billing',BillingSchema);

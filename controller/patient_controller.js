@@ -32,3 +32,45 @@ exports.getAllPatientsDetails=function(req,res,next){
         }
     })
 }
+
+exports.getonePatdetils=function(req,res,next){
+    var data=req.body;
+    Patient.findById(data.id).exec(function(err,pat){
+        if(!err && pat){
+            res.send(pat)
+        }else{
+            res.send('error')
+        }
+    })
+}
+
+exports.addService=function(req,res,next){
+    console.log(req.body);
+    Patient.update({_id:req.body.pat_id},{
+        $push:{
+            services:req.body.service_id
+        }
+    }).exec(function(err,ress){
+        if(err){
+            res.send(err)
+        }else{
+            res.send('done ')
+        }
+    })
+}
+
+
+exports.getAllSevuceofPateient=function(req,res,next){
+    var data=req.body;
+    Patient.findById(data.id).populate('BillingDetails').exec(function(err,fre){
+        if(!err && fre){
+           res.send(fre.BillingDetails)
+        }else{
+            res.send('error')
+        }
+    })
+}
+
+exports.deleteserviceFromPatient=function(req,res,next){
+    
+}

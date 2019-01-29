@@ -18,7 +18,12 @@ var PatientSchema=new mongoose.Schema({
     secondary_contact_number:{type:String},
     email:{type:String,unique:true},
     adhar_number:{type:Number},
-    hospital_id:String
+    hospital_id:String,
+    services:[String],
+    service:[
+        {name:String,
+        charge:Number}
+    ]
     
 },{
     toObject:{virtuals:true},
@@ -31,6 +36,14 @@ PatientSchema.virtual('hospitalDetails',{
     foreignField: 'patient_id',
     justOne: false
 })
+PatientSchema.virtual('BillingDetails',{
+    ref: 'Service',
+    localField: 'services',
+    foreignField: '_id',
+    justOne: false
+})
+
+
 
 
 module.exports=mongoose.model('Patient',PatientSchema);
