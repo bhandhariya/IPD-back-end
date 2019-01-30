@@ -1,6 +1,7 @@
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
 var HospitalSchema=new mongoose.Schema({
+    _id:{type:Schema.Types.ObjectId},
     name:{type:String,required:true},
     username:{type:String,required:true,unique:true},
     password:{type:String,required:true},
@@ -31,6 +32,12 @@ HospitalSchema.virtual('serviceDetails',{
     localField: 'service_id',
     foreignField: 'service_id',
     justOne: false
+})
+
+HospitalSchema.virtual('hosdetails',{
+    ref: 'Billing',
+    localField:'_id',
+    foreignField:'hospital_id'
 })
 
 module.exports=mongoose.model('Hospital',HospitalSchema);

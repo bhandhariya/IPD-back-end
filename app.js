@@ -16,6 +16,7 @@ var indexRouter = require('./routes/index');
 var hospitalRouter=require('./routes/hospital_router');
 var patientRouter=require('./routes/paitent_router');
 var serviceRouter=require('./routes/service_router');
+var billingRouter=require('./routes/billing_router');
 
 
 var app = express();
@@ -45,6 +46,7 @@ app.use('/', indexRouter);
 app.use('/hospital',hospitalRouter);
 app.use('/patient',patientRouter);
 app.use('/service',serviceRouter);
+app.use('/billing',billingRouter);
 
 
 

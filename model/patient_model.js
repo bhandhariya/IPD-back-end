@@ -1,6 +1,7 @@
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
 var PatientSchema=new mongoose.Schema({
+    _id:{type:Schema.Types.ObjectId},
     first_name:{type:String,required:true},
     last_name:{type:String,required:true},
     parent_name:{type:String},

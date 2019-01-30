@@ -35,7 +35,8 @@ Hospital.findOne({username:req.body.username},function(err,admin){
         var ok=bcrypt.compareSync(req.body.password,admin.password);
         if(ok){
             var token=jwt.sign(admin,config.secret);
-            console.log(admin._id)
+            // console.log(token)
+            // console.log(admin._id)
          res.json({
              token:token,
              id:admin._id,
