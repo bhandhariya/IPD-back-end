@@ -51,7 +51,7 @@ exports.dayEndBilling=function(req,res,next){
         billing_date:data.billing_date
     }).populate('hospital').populate('serviceDetailsssss').populate('patient').exec(function(err,result){
         if(!err && result){
-            console.log(result)
+            // console.log(result)
             res.send(result);
             
         }else{

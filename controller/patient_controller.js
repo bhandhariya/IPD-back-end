@@ -72,5 +72,5 @@ exports.getAllSevuceofPateient=function(req,res,next){
 }
 
 exports.deleteserviceFromPatient=function(req,res,next){
-    
+        
 }

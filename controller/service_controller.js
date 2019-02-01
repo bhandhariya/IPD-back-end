@@ -36,14 +36,22 @@ exports.getAllServicesDetails=function(req,res,next){
 }
 
 exports.delete=function(req,res,next){
-    var data=req.body;
-    console.log(data.id);
+    // var data=req.body;
+    // console.log(data.id);
     
-    Service.find({id:data.id}).remove().exec(function(err,result){
-        if(!err && result){
-            res.send('done')
+    // Service.find({id:data.id}).remove().exec(function(err,result){
+    //     if(!err && result){
+    //         res.send('done')
+    //     }else{
+    //         res.send('not ')
+    //     }
+    // })
+    console.log(req.body.id)
+    Service.findByIdAndRemove(req.body.id).exec(function(err,resss){
+        if(!err && resss){
+            res.send('deleted successfully')
         }else{
-            res.send('not ')
+            console.log(err)
         }
     })
 }
@@ -51,3 +59,21 @@ exports.delete=function(req,res,next){
 exports.addServicestoPatient=function(req,res,next){
     console.log(req.body)
 }
+
+exports.update=function(req,res,next){
+    var data=req.body;
+    console.log(data)
+    Service.findByIdAndUpdate(data.id,{
+        $set:{
+            name:data.name,
+            charge:data.charge
+        }
+    }).exec(function(err,pat) {
+        if(!err && pat){
+            res.send('updated')
+        }else{
+            return console.log(err)
+        }
+    })
+}
+

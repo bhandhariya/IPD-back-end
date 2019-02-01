@@ -24,7 +24,9 @@ var PatientSchema=new mongoose.Schema({
     service:[
         {name:String,
         charge:Number}
-    ]
+    ],
+    nationality:{type:String},
+    
     
 },{
     toObject:{virtuals:true},

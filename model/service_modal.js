@@ -1,8 +1,8 @@
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
 var ServiceSchema=new mongoose.Schema({
-    name:{type:String,required:true,unique:true},
-    charge:{type:Number,required:true,unique:true},
+    name:{type:String,required:true},
+    charge:{type:Number,required:true},
     hospital_id:{type:String},
     patient_id:[String]
 },{
