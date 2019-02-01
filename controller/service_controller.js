@@ -2,6 +2,7 @@ var Service=require('../model/service_modal');
 var Hospital=require('../model/hospital_model');
 var Patient=require('../model/patient_model');
 
+
 exports.createService=function(req,res,next){
     var data=req.body;
     console.log(data);
