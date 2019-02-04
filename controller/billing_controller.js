@@ -34,7 +34,7 @@ exports.billforpat=function(req,res,next){
                 if(!err && result){
                     res.send('Billing Added Successfully')
                 }else{
-                    res.send('err')
+                    res.send(err)
                 }
             })
         }else{
