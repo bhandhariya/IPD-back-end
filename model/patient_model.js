@@ -1,7 +1,7 @@
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
 var PatientSchema=new mongoose.Schema({
-    _id:{type:Schema.Types.ObjectId},
+    _id:{type:Schema.Types.ObjectId,required:true},
     first_name:{type:String,required:true},
     last_name:{type:String,required:true},
     parent_name:{type:String},
@@ -25,8 +25,17 @@ var PatientSchema=new mongoose.Schema({
         {name:String,
         charge:Number}
     ],
+    education:{type:String},
+    marrital_status:{type:String},
     nationality:{type:String},
-    
+    info_source:{type:String},
+    locality:{type:String},
+    family_type:{type:String},
+    country:{type:String},
+    religion:{type:String},
+    town:{type:String},
+    income:{type:String},
+    occupation:{type:String}
     
 },{
     toObject:{virtuals:true},

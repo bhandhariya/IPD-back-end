@@ -14,7 +14,7 @@ exports.createService=function(req,res,next){
                 $push:{service_id:service._id}
             }).exec(function(err,result){
                 if(!err && result){
-                    res.send('Servicess add SuccessFully')
+                    res.send('Servicess added SuccessFully')
                 }else{
                     res.send('Error in service')
                 }
@@ -50,7 +50,7 @@ exports.delete=function(req,res,next){
     console.log(req.body.id)
     Service.findByIdAndRemove(req.body.id).exec(function(err,resss){
         if(!err && resss){
-            res.send('deleted successfully')
+            res.send('Service Deleted')
         }else{
             console.log(err)
         }
@@ -71,7 +71,7 @@ exports.update=function(req,res,next){
         }
     }).exec(function(err,pat) {
         if(!err && pat){
-            res.send('updated')
+            res.send('service updated')
         }else{
             return console.log(err)
         }

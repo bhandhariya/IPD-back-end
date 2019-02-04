@@ -40,7 +40,7 @@ Hospital.findOne({username:req.body.username},function(err,admin){
          res.json({
              token:token,
              id:admin._id,
-             msg:'register successfully'
+             msg:'Hospital  register successfully'
          });
         }else{
             res.send("wrong password");

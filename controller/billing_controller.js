@@ -32,7 +32,7 @@ exports.billforpat=function(req,res,next){
                 total:data.total
             },function(err,result){
                 if(!err && result){
-                    res.send('billing Successfull')
+                    res.send('Billing Added Successfully')
                 }else{
                     res.send('err')
                 }
@@ -55,7 +55,7 @@ exports.dayEndBilling=function(req,res,next){
             res.send(result);
             
         }else{
-            res.send('error')
+            res.send('error in finding day end data report please check after some time ')
         }
     })
 }
