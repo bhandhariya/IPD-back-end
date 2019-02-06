@@ -27,8 +27,8 @@ exports.login=function(req,res){
 var data=req.body;
 console.log(data)
 Hospital.findOne({username:req.body.username},function(err,admin){
-    // console.log(err)
-    // console.log(admin)
+    console.log(err)
+    console.log(admin)
     if(err) throw err;
     if(!admin){
         res.send('Authentication failed. User not found.');
@@ -36,8 +36,8 @@ Hospital.findOne({username:req.body.username},function(err,admin){
         var ok=bcrypt.compareSync(req.body.password,admin.password);
         if(ok){
             var token=jwt.sign(admin,config.secret);
-            // console.log(token)
-            // console.log(admin._id)
+            console.log(token)
+            console.log(admin._id)
          res.json({
              token:token,
              id:admin._id,
