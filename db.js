@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-var mongoURI = "mongodb://localhost:27017/IPD-17-jan";
+// var mongoURI = "mongodb://localhost:27017/IPD-17-jan";
+var mongoURI = "mongodb://localhost:27017/IPD-05-feb";
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoURI,{useMongoClient:true})
 var db = mongoose.connection;

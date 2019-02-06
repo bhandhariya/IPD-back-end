@@ -2,19 +2,20 @@ var Hospital=require('../model/hospital_model');
 var bcrypt=require('bcrypt-nodejs');
 var jwt=require('jsonwebtoken');
 var config=require('../config/database');
-
+var mongoose=require('mongoose');
 
 exports.register=function(req,res){
     var data=req.body;
+    console.log(data)
     if(data.username==null && data.name==null && data.password==null){
         res.send('fields can not be blank')
     }else{
         var hash=bcrypt.hashSync(data.password);
-        
+        data._id=new mongoose.Types.ObjectId;
         data.password=hash;
         Hospital.create(data,function(err,result){
             if(err){
-                res.send('fields can not be blank')
+                res.send(err)
             }else{
                 res.send('register Successfully')
             }
@@ -75,3 +76,11 @@ exports.getName=function(req,res,next){
 //         }
 //     })
 // }
+
+
+exports.getAllService=function(req,res,next){
+    var data=req.body;
+    Hospital.findById(data.id).populate('serviceDetails').exec(function(err,result){
+        res.send(result.serviceDetails)
+    })
+}

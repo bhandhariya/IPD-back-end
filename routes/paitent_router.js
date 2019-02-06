@@ -19,4 +19,8 @@ router.post('/allServiceDetails',PatientController.getAllSevuceofPateient)
 
 router.post('/deleteserviceFromPatient',PatientController.deleteserviceFromPatient)
 
+router.post('/findbynameall',PatientController.findbynameall);
+
+router.post('/findbynumberall',PatientController.findbynumber)
+
 module.exports = router;

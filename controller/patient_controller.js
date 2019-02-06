@@ -92,8 +92,10 @@ exports.addService=function(req,res,next){
 
 exports.getAllSevuceofPateient=function(req,res,next){
     var data=req.body;
+    console.log(data)
     Patient.findById(data.id).populate('BillingDetails').exec(function(err,fre){
         if(!err && fre){
+            console.log(fre.BillingDetails)
            res.send(fre.BillingDetails)
         }else{
             res.send('error')
@@ -103,4 +105,30 @@ exports.getAllSevuceofPateient=function(req,res,next){
 
 exports.deleteserviceFromPatient=function(req,res,next){
         
+}
+
+exports.findbynameall=function(req,res,next){
+    var data=req.body;
+    Patient.find({first_name:data.name}).exec(function(err,pat){
+        if(!err && pat){
+           
+            res.send(pat);
+
+        }else{
+            res.send('patient not available')
+        }
+    })
+}
+exports.findbynumber=function(req,res,next){
+    var data=req.body;
+    // console.log(data)
+    Patient.find({"primary_contact_number":data.number}).exec(function(err,pat){
+        if(!err && pat){
+        //    console.log(pat)
+            res.send(pat);
+
+        }else{
+            res.send('patient not available')
+        }
+    })
 }
