@@ -17,4 +17,6 @@ router.post('/getAlldetails',HospitalController.getName);
 
 router.post('/getallService',HospitalController.getAllService);
 
+router.post('/edit',HospitalController.edit);
+
 module.exports = router;

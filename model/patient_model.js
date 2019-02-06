@@ -20,7 +20,7 @@ var PatientSchema=new mongoose.Schema({
     email:{type:String,unique:true},
     adhar_number:{type:Number},
     hospital_id:String,
-    services:[{type:String,unique:true}],
+    services:[String],
     service:[
         {name:String,
         charge:Number}

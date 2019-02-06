@@ -84,3 +84,8 @@ exports.getAllService=function(req,res,next){
         res.send(result.serviceDetails)
     })
 }
+
+exports.edit=function(req,res,next){
+    var data=req.body;
+    console.log(data)
+}
