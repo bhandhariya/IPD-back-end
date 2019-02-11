@@ -1,5 +1,7 @@
 var mongoose=require('mongoose');
 var Schema=mongoose.Schema;
+var AutoIncrement=require('mongoose-sequence')(mongoose);
+
 var HospitalSchema=new mongoose.Schema({
     _id:{type:Schema.Types.ObjectId,required:true},
     name:{type:String,required:true},
@@ -22,6 +24,7 @@ var HospitalSchema=new mongoose.Schema({
 });
 
 
+
 HospitalSchema.virtual('patientsDetails',{
     ref: 'Patient',
     localField: 'patient_id',
@@ -41,5 +44,7 @@ HospitalSchema.virtual('hosdetails',{
     localField:'_id',
     foreignField:'hospital_id'
 })
+
+HospitalSchema.plugin(AutoIncrement,{inc_field:'id'})
 
 module.exports=mongoose.model('Hospital',HospitalSchema);
