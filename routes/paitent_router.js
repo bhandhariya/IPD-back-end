@@ -15,7 +15,9 @@ router.post('/getonePatientDetail',PatientController.getonePatdetils)
 
 router.post('/addService',PatientController.addService);
 
-router.post('/allServiceDetails',PatientController.getAllSevuceofPateient)
+router.post('/allServiceDetails',PatientController.getAllSevuceofPateient);
+
+router.post('/billingdetails',PatientController.billingdetails);
 
 router.post('/deleteserviceFromPatient',PatientController.deleteserviceFromPatient)
 

@@ -3,7 +3,7 @@ var Hospital=require('../model/hospital_model');
 var mongoose=require('mongoose')
 exports.savePatient=function(req,res,next){
     var data=req.body;
-    data._id=new mongoose.Schema.Types.ObjectId;
+    data._id=new mongoose.Types.ObjectId;
     var patient=new Patient({
        _id:new mongoose.Types.ObjectId,
         first_name:data.first_name,
@@ -87,6 +87,19 @@ exports.addService=function(req,res,next){
             res.send('Service Added ')
         }
     })
+}
+
+exports.billingdetails=function(req,res,next){
+var data=req.body;
+console.log(req.body)
+Patient.find().populate({
+    path:'billingdetail',
+    populate:{
+        path:'serviceDetailsssss'
+    }
+}).exec(function(err,pat){
+    res.send(pat)
+})
 }
 
 

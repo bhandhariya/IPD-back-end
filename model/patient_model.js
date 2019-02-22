@@ -25,6 +25,7 @@ var PatientSchema=new mongoose.Schema({
         {name:String,
         charge:Number}
     ],
+    billingdet:[String],
     education:{type:String},
     marrital_status:{type:String},
     nationality:{type:String},
@@ -53,6 +54,13 @@ PatientSchema.virtual('BillingDetails',{
     localField: 'services',
     foreignField: '_id',
     justOne: false
+})
+
+PatientSchema.virtual('billingdetail',{
+    ref:'Billing',
+    localField:'billingdet',
+    foreignField:'_id',
+    justOne:false
 })
 
 
