@@ -13,6 +13,8 @@ router.post('/billforPatientt',BillingController.billforpat);
 
 router.post('/billingAtDayEnd',BillingController.dayEndBilling);
 
+router.post('/getAllbilling',BillingController.getAllbilling);
+
 
 
 module.exports = router;

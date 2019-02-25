@@ -16,7 +16,8 @@ var HospitalSchema=new mongoose.Schema({
     service_id:[{type:String}],
     city:{type:String},
     pin:{type:Number},
-    state:{type:String}
+    state:{type:String},
+    invoice_format:{type:String}
     
 },{
     toObject:{virtuals:true},

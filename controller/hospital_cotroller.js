@@ -89,3 +89,25 @@ exports.edit=function(req,res,next){
     var data=req.body;
     console.log(data)
 }
+
+exports.addprefix=function(req,res,next){
+    var data=req.body;
+    Hospital.findByIdAndUpdate(data.id,{invoice_format:data.invoice_format}).exec(function(err,hos){
+        if(err){
+            res.send('can not  update')
+        }else{
+            res.send('updated ')
+        }
+    })
+}
+
+exports.findprefix=function(req,res,next){
+    var data=req.body;
+    Hospital.findById(data.id,function(err,responce){
+        if(err){
+            res.send('err')
+        }else{
+            res.send(responce)
+        }
+    })
+}

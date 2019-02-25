@@ -1,5 +1,6 @@
 var Patient=require('../model/patient_model');
 var Hospital=require('../model/hospital_model');
+var Billing=require('../model/billing_modal')
 var mongoose=require('mongoose')
 exports.savePatient=function(req,res,next){
     var data=req.body;
@@ -65,7 +66,7 @@ exports.getAllPatientsDetails=function(req,res,next){
 
 exports.getonePatdetils=function(req,res,next){
     var data=req.body;
-    Patient.findById(data.id).exec(function(err,pat){
+    Patient.findById(data.id).populate('BillingDetails').exec(function(err,pat){
         if(!err && pat){
             res.send(pat)
         }else{
@@ -91,15 +92,30 @@ exports.addService=function(req,res,next){
 
 exports.billingdetails=function(req,res,next){
 var data=req.body;
-console.log(req.body)
-Patient.find().populate({
-    path:'billingdetail',
-    populate:{
-        path:'serviceDetailsssss'
-    }
-}).exec(function(err,pat){
-    res.send(pat)
-})
+console.log(data)
+if(data.billID==undefined){
+    Billing.create({
+        patient_id:data.patientid,
+        hospital_id:data.hospitalid,
+        service_id:data.serviceid,
+        total:data.total
+    },function(err,result){
+        if(err){
+            res.send(err)
+        }else{
+            res.send(result)
+        }
+    })
+}else{
+    Billing.findByIdAndUpdate(data.billID,{$push:{service_id:data.serviceid}}).populate('serviceDetailsssss').exec(function(err,result){
+        if(err){
+            res.send(err)
+        }else{
+            res.send(result)
+        }
+    })
+}
+
 }
 
 
@@ -144,4 +160,72 @@ exports.findbynumber=function(req,res,next){
             res.send('patient not available')
         }
     })
+}
+
+exports.addServiceToPatient=function(req,res,next){
+    var data=req.body;
+     console.log(data)
+    Patient.findByIdAndUpdate(data.patientid,{$push:{services:data.serviceid}}).populate('BillingDetails').exec(function(err,patser){
+        if(err){
+            res.send('error')
+        }else{
+            Patient.findById(data.patientid).populate('BillingDetails').exec(function(err,resss){
+                if(resss){
+                    res.send(resss)
+                }
+            })
+        }
+    })
+}
+
+exports.billinggg=function(req,res,next){
+    var data=req.body;
+     console.log(data)
+     var prefix;
+     Hospital.findById(data.hos_id).exec(function(err,hospital){
+         if(hospital){
+             prefix=hospital.invoice_format
+         }
+     })
+     Patient.findByIdAndUpdate(data.patid,{$unset:{services:1}}).exec(function(err,result){
+         if(err){
+             console.log('err')
+         }else{
+             if(result){
+                 Billing.create({
+                    patient_id:data.patid,
+                    hospital_id:data.hos_id,
+                    services:data.billids,
+                    total:data.total,
+                    billing_date:data.billing_date
+
+                 },function(err,bill){
+                     if(err){
+                         res.send('error')
+                     }else{
+                        Billing.findByIdAndUpdate(bill._id,{invoiceid:prefix+bill.billid}).exec(function(err,billu){
+                            if(bill){
+                                res.send(billu)
+                            }
+                        })
+                     }
+                 })
+                 
+             }
+         }
+     })
+
+}
+
+exports.getpatientdata=function(req,res,next){
+    var data=req.body;
+     Patient.findById(data.id).exec(function(err,pat){
+         if(pat){
+             res.send(pat)
+         }else{
+             res.send('error')
+         }
+     })
+    
+
 }

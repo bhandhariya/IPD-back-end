@@ -19,10 +19,17 @@ router.post('/allServiceDetails',PatientController.getAllSevuceofPateient);
 
 router.post('/billingdetails',PatientController.billingdetails);
 
+router.post('/addServiceToPatient',PatientController.addServiceToPatient);
+
 router.post('/deleteserviceFromPatient',PatientController.deleteserviceFromPatient)
 
 router.post('/findbynameall',PatientController.findbynameall);
 
 router.post('/findbynumberall',PatientController.findbynumber)
+
+
+router.post('/billinggg',PatientController.billinggg)
+
+router.post('/getpatientdata',PatientController.getpatientdata)
 
 module.exports = router;

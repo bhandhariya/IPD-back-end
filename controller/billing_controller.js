@@ -49,13 +49,23 @@ exports.dayEndBilling=function(req,res,next){
     var data=req.body;
     Billing.find({
         billing_date:data.billing_date
-    }).populate('hospital').populate('serviceDetailsssss').populate('patient').exec(function(err,result){
+    }).populate('hospital').populate('srervice').populate('patient').exec(function(err,result){
         if(!err && result){
             // console.log(result)
             res.send(result);
             
         }else{
             res.send('error in finding day end data report please check after some time ')
+        }
+    })
+}
+
+exports.getAllbilling=function(req,res,next){
+    var data=req.body;
+    console.log(data)
+    Billing.find({patient_id:data.id}).populate('srervice').exec(function(err,bill){
+        if(bill){
+            res.send(bill)
         }
     })
 }

@@ -13,6 +13,10 @@ router.post('/login',HospitalController.login);
 
 router.post('/getAlldetails',HospitalController.getName);
 
+router.post('/addprefix',HospitalController.addprefix)
+
+router.post('/findprefix',HospitalController.findprefix)
+
 
 
 router.post('/getallService',HospitalController.getAllService);
