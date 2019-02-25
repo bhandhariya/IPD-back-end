@@ -28,8 +28,13 @@ router.post('/findbynameall',PatientController.findbynameall);
 router.post('/findbynumberall',PatientController.findbynumber)
 
 
-router.post('/billinggg',PatientController.billinggg)
+router.post('/billinggg',PatientController.billinggg);
+
+router.post('/deleteservicebyid',PatientController.deleteservicebyid)
 
 router.post('/getpatientdata',PatientController.getpatientdata)
+
+
+router.post('/quickaddpatient',PatientController.quickaddpatient)
 
 module.exports = router;

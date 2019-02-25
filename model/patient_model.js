@@ -3,7 +3,7 @@ var Schema=mongoose.Schema;
 var PatientSchema=new mongoose.Schema({
     _id:{type:Schema.Types.ObjectId,required:true},
     first_name:{type:String,required:true},
-    last_name:{type:String,required:true},
+    last_name:{type:String},
     parent_name:{type:String},
     age:{type:String},
     gender:{type:String},

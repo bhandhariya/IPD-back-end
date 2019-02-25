@@ -229,3 +229,50 @@ exports.getpatientdata=function(req,res,next){
     
 
 }
+
+
+
+exports.deleteservicebyid=function(req,res,next){
+    var data=req.body;
+    console.log(data);
+    Patient.findByIdAndUpdate(data.patid,{$pull:{services:data.serviceid}}).exec(function(err,pat){
+        if(pat){
+            res.send('done delitng')
+        }
+    })
+}
+
+exports.quickaddpatient=function(req,res,next){
+var data=req.body;
+console.log(data);
+data._id=new mongoose.Types.ObjectId;
+    var patient=new Patient({
+        _id:new mongoose.Types.ObjectId,
+        first_name:data.first_name,
+        hospital_id:data.hosid,
+        email:data.email
+    })
+    patient.save(function(errr,pat){
+        if(errr) {
+            // console.log(errr)
+            console.log(errr)
+            res.send('error ')
+        }else{
+            Hospital.findByIdAndUpdate(pat.hospital_id,{
+                $push:{patient_id:pat._id}
+            }).exec(function(err,result){
+                if(!err && result){
+                    res.send('patient add SuccessFully')
+                }else{
+                    // console.log(err)
+                    res.send('Error in patient')
+                }
+            })
+        }
+    })
+
+
+
+
+
+}
